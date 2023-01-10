@@ -1,0 +1,36 @@
+<%- include('includes/head') %>
+    <%- include('includes/nav') %>
+
+        <div class="container" style="margin-top: 60px ;">
+            <h3 class="text-uppercase text-center">My Ads</h3>
+            <% myAds.forEach((ad)=>{ %>
+                <div class="row mb-2 border" style="background-color: rgb(236, 232, 232);">
+                    <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0 d-flex justify-content-center align-items-center">
+                        <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                            <img src="<%= ad.imgUrl %>"  style="height: 200px;max-width: 300px;" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-6 py-4">
+                        <h5><%= ad.title %></h5>
+                        <h6 class="text-muted"><%= ad.brand %></h6>
+                        <p class="">
+                            <%= ad.description %>
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start py-4">
+                        <div class="d-flex flex-row align-items-center mb-1">
+                            <h4 class="mb-1 me-1">₹<%= ad.price %></h4>
+                        </div>
+                        <div class="d-flex flex-column mt-4">
+                            <a class="btn btn-dark btn mb-2 rounded-0" href="/product/?id=<%= ad.aid %>">Details</a>
+                            <form action="/myads/delete/<%= ad.aid %>" method="post">
+                                <button type="submit" class="btn btn-outline-dark btn container rounded-0">Delete Ad</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        
+        <% }) %>
+            </div>
+
+            <%- include('includes/foot') %>

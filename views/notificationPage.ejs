@@ -1,0 +1,168 @@
+<%- include('includes/head') %>
+    <%- include('includes/nav') %>
+
+        <div class="container-fluid" style="margin-top: 50px;background-color: rgb(227, 231, 235);min-height: 93vh;">
+            <div class="container py-4 px-2" style="width: 60vw;">
+                <div class="d-flex justify-content-center mb-4">
+                    <h5 class="requestbar" onclick="reqBar('sent')" value="sent">Sent Requests</h5>
+                    <h5 class="requestbar requestbarActive mx-3" onclick="reqBar('recieved')" value="recieved">Recieved
+                        Requests</h5>
+                    <h5 class="requestbar" onclick="reqBar('notification')" value="notification">Notification</h5>
+                </div>
+
+                <!-- Sent Requests -->
+                <div class="accordianDiv" value="sent" style="display: none;">
+                    <div class="requestsAccord container justify-content-center">
+                        <div class="accordion" id="accordionExample">
+                            <% sentRequests.forEach((req)=>{ %>
+                                <div class="accordion-item shadow mb-1 border">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button shadow-none d-flex align-items-center"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            <img src="<%= req.productImage %>" style="width: 100px;">
+                                            <p class="m-0">Requested</p>
+                                            <h5 class="mx-3 m-0 text-dark">
+                                                <%= req.productTitle %>
+                                            </h5>
+                                            <p class="m-0 mx">from</p>
+                                            <h5 class="m-0 mx-3 text-dark">
+                                                <%= req.sellerName %>
+                                            </h5>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <strong>Product Id. <%= req.productID %></strong>
+                                            <p class="fw-normal m-0"><strong>Seller Name: </strong>
+                                                <%= req.sellerName %>
+                                            </p>
+                                            <p class="fw-normal m-0"><strong>Reason: </strong>
+                                                <%= req.reason %>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="d-flex justify-content-center align-items-center text-success fw-bold mb-3">
+                                            Request Pending....
+                                            <a href="/notification/reject/<%= req.rid %>"
+                                                class="btn btn-dark ms-4 px-5 rounded-0">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recieved Request -->
+                <div class="accordianDiv" value="recieved">
+                    <div class="requestsAccord container justify-content-center">
+                        <% recievedRequests.forEach((req)=>{ %>
+                            <div class="accordion shadow" id="accordionExample">
+                                <div class="accordion-item mb-1">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button shadow-none d-flex align-items-center"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            <img src="<%= req.productImage %>" style="width: 100px;margin-right: 10px;">
+                                            <h5 class="m-0 text-dark">
+                                                <%= req.userName %>
+                                            </h5>
+                                            <p class="m-0 mx-4">requested for</p>
+                                            <h5 class="m-0 text-dark">
+                                                <%= req.productTitle %>
+                                            </h5>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <strong>Product Id. <%= req.productID %></strong>
+                                            <p class="fw-normal m-0"><strong>Name: </strong>
+                                                <%= req.userName %>
+                                            </p>
+                                            <p class="fw-normal m-0"><strong>Address: </strong>
+                                                <%= req.userAddress %>
+                                            </p>
+                                            <p class="fw-normal m-0"><strong>Reason: </strong>
+                                                <%= req.reason %>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mb-3 ">
+
+                                            <a href="/notification/reject/<%= req.rid %>"
+                                                class="btn btn-danger rounded-0 me-2 px-5">Reject</a>
+                                            <a href="/notification/accept/<%= req.rid %>"
+                                                class="btn btn-success rounded-0 px-5">Accept</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="accordianDiv" value="notification" style="z-index: -1;display: none;">
+                    <div class="container-fluid justify-content-center d-flex">
+                        <% notifications.forEach((not)=>{ %>
+                            <div class="bg-light d-flex align-items-center shadow p-2" style="width: 600px;">
+                                <img src="<%= not.productImage %>" style="width: 18rem;">
+                                <div class="p-2">
+
+                                    <strong>Product Id. <%= not.productID %></strong>
+                                    <p class="fw-normal m-0"><strong>Product Name: </strong>
+                                        <%= not.productTitle %>
+                                    </p>
+                                    <p class="fw-normal m-0"><strong>Product Price:
+                                        </strong>
+                                        ₹<%= not.productPrice %>
+                                    </p>
+                                    <hr>
+                                    <strong>Seller Details</strong>
+                                    <p class="fw-normal m-0"><strong>Name: </strong>
+                                        <%= not.sellerName %>
+                                    </p>
+                                    <p class="fw-normal m-0"><strong>Email: </strong>
+                                        <%= not.sellerEmail %>
+                                    </p>
+                                    <p class="fw-normal m-0"><strong>Mobile: </strong>
+                                        <%= not.sellerMobile %>
+                                    </p>
+                                    <p class="fw-normal m-0"><strong>Address: </strong>
+                                        <%= not.sellerAddress %>
+                                    </p>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+
+            function reqBar(e) {
+                var bars = document.querySelectorAll('.requestbar');
+                var accordians = document.querySelectorAll('.accordianDiv');
+                bars.forEach((bar) => {
+                    if (bar.getAttribute('value') == e) {
+                        bar.classList.add('requestbarActive')
+                    } else {
+                        bar.classList.remove('requestbarActive')
+                    }
+                })
+
+                accordians.forEach((acc) => {
+                    if (acc.getAttribute('value') == e) {
+                        acc.style.display = "flex"
+                    } else {
+                        acc.style.display = "none"
+                    }
+                })
+            }
+        </script>
+
+        <%- include('includes/foot') %>

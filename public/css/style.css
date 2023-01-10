@@ -1,0 +1,39 @@
+body{
+    overflow-x: hidden;
+    /* min-height: 100vh; */
+}
+
+.form-control:focus{
+    outline: none;
+}
+
+.dropdown-toggle[aria-expanded="true"]:after {
+    transform: rotate(180deg); 
+    }
+    /*for animation*/ 
+.dropdown-toggle:after { 
+    transition: 0.7s; 
+    }
+
+.nav-link{
+    cursor: pointer;
+}
+
+.activeCat{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.requestbar{
+    color: rgb(122, 74, 74);
+}
+
+.requestbar:hover{
+    color: black;
+    cursor: pointer;
+}
+
+.requestbarActive{
+    font-weight: bold;
+    color: black;
+}

@@ -1,0 +1,27 @@
+<% products.forEach((prod)=>{ %>
+    <% if(typeof user == 'undefined'){ %>
+        <a href="/product/?id=<%= prod.aid %>" style="text-decoration: none;" class="m-1 text-dark  prod-card" value = "<%= prod.category %>">
+            <div class="card rounded-0 border-0" style="width: 15rem;background-color: rgb(229, 233, 236);">
+                <img class="card-img-top" src="<%= prod.imgUrl %>" style="height: 190px;" alt="Card image cap">
+                <div class="card-body pb-0">
+                <h5 class="cart-title fw-bold m-0">Rs. <%= prod.price %></h5>
+                  <h6 class="card-title m-0"><%= prod.title %></h6>
+                  <p class="card-text">Brand: <%= prod.brand %></p>
+                </div>
+                <small class="px-2 my-1  text-muted"><%= prod.city %></small>
+            </div>
+        </a>
+        <% }else if(typeof user != 'undefined' && prod.sellerId != user.uid){ %>
+            <a href="/product/?id=<%= prod.aid %>" style="text-decoration: none;" class="m-1 text-dark  prod-card" value = "<%= prod.category %>">
+                <div class="card rounded-0 border-0" style="width: 15rem;background-color: rgb(229, 233, 236);">
+                    <img class="card-img-top" src="<%= prod.imgUrl %>" style="height: 190px;" alt="Card image cap">
+                    <div class="card-body pb-0">
+                    <h5 class="cart-title fw-bold mb-2">Rs. <%= prod.price %></h5>
+                      <h6 class="card-title m-0"><%= prod.title %></h6>
+                      <p class="card-text">Brand: <%= prod.brand %></p>
+                    </div>
+                    <small class="px-2 my-1 text-end  text-muted"><%= prod.city %></small>
+                </div>
+            </a>
+    <% } %>
+<% }) %>

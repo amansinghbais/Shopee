@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark px-3 position-fixed w-100"
+    style="height: 50px;top: 0;z-index: 2;">
+    <div class="container-fluid mx-4">
+        <div class="navbar-nav d-flex align-items-center">
+            <a class="navbar-brand" style="font-family: cursive; ;font-size: 27px;" href="/">Shopee</a>
+            <div class="dropdown nav-item ms-3">
+                <button class="btn btn-secondary dropdown-toggle border-0 rounded-0 bg-transparent p-0" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false" >
+                    <%= typeof cityName != 'undefined'? cityName.substring(0,1).toUpperCase() + cityName.substring(1) : 'All Cities' %>
+                </button>
+                <ul class="dropdown-menu" style="background-color: aliceblue;">
+                    <li><a class="dropdown-item" href="/?q=all">All</a></li>
+                    <li><a class="dropdown-item" href="/?q=gwalior">Gwalior</a></li>
+                    <li><a class="dropdown-item" href="/?q=indore">Indore</a></li>
+                    <li><a class="dropdown-item" href="/?q=bhopal">Bhopal</a></li>
+                    <li><a class="dropdown-item" href="/?q=delhi">Delhi</a></li>
+                    <li><a class="dropdown-item" href="/?q=bangalore">Bangalore</a></li>
+                    <li><a class="dropdown-item" href="/?q=mumbai">Mumbai</a></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="navbar-nav d-flex align-items-center">
+            <% if(typeof user=='undefined' ){ %>
+                <li class="nav-item">
+                    <a class="loginBtn nav-link active" aria-current="page" href="/login">Log In</a>
+                </li>
+                <% }else{ %>
+                    <% if(typeof requests != 'undefined'){ %>
+                        <li class="nav-item me-3">
+                            <a class="nav-link active fs-5" aria-current="page" href="/notification/"><i class="fa-solid fa-bell"></i></a>
+                        </li>
+                    <% } %>
+
+                    <li class="nav-item dropdown d-flex align-items-center">
+                        <a class="nav-link dropdown-toggle m-0 p-0 text-white position-relative d-flex justify-content-center align-items-center"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="border-0 text-white d-flex justify-content-center align-items-center"
+                                style="width: 30px;height: 30px;background-color: rgb(75, 75, 116);border-radius: 50%;">
+                                <%= user.name.split("")[0] %>
+                            </div>
+                        </a>
+                        <ul class=" dropdown-menu rounded-2 position-absolute"
+                            style="width: 240px;left: -50px;background-color: aliceblue;">
+                            <li class="px-3 py-2 pb-4 d-flex align-items-center">
+                                <div class="d-flex justify-content-center align-items-center text-white"
+                                    style="width: 50px;height: 50px;border-radius : 50%;background-color: rgb(75, 75, 116);font-size: 25px;">
+                                    <%= user.name.split("")[0] %>
+                                </div>
+                                <a href="/profile" class="d-flex flex-column justify-content-center ms-3 text-dark"
+                                    style="text-decoration: none;">
+                                    <p class="m-0 p-0" style="font-size: 14px;">Hello,</p>
+                                    <h6>
+                                        <%= user.name %>
+                                    </h6>
+                                    <p href="#" class="p-0 m-0" style="font-size: 14px;text-decoration: underline;">View
+                                        and
+                                        edit profile</p>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider m-0">
+                            </li>
+                            <li>
+                                <a class="dropdown-item p-0 py-2" href="/myads"><i class="fa-solid fa-heart mx-3"></i>My
+                                    Ads</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider m-0">
+                            </li>
+                            <li>
+                                <a class="dropdown-item p-0 py-2" href="/logout"><i
+                                        class="fa-solid fa-right-from-bracket mx-3"></i>Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <% } %>
+                        <a href="/sell" class="btn btn-warning rounded-5 fw-bold ms-4 d-flex align-items-center"><i
+                                class="fa fa-plus me-2"></i>SELL</a>
+
+        </ul>
+    </div>
+</nav>

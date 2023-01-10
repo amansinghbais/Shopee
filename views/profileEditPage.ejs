@@ -1,0 +1,67 @@
+<%- include('includes/head') %>
+    <%- include('includes/nav') %>
+
+        <div class="row justify-content-start vw-100" style="margin-top: 70px;">
+            <div class="profile-image col-3 my-5 mx-3 d-flex justify-content-start align-items-center flex-column">
+                <div class="d-flex justify-content-center align-items-center text-white"
+                    style="background-color: rgb(75, 75, 116);border-radius: 50%;font-size: 50px;width: 200px;height: 200px;">
+                    <%= user.name.split("")[0].toUpperCase() %>
+                </div>
+            </div>
+            <div class="col-6 mx-5 p-0 my-5" style="border: 1px solid rgb(194, 183, 183);">
+                <h4 class="px-4 py-2" style="border: 1px solid rgb(194, 183, 183);">
+                    Edit Profile
+                </h4>
+                <form class="px-4 py-2" action="/profile/edit" method="post">
+                    <div class="form-group mb-4">
+                        <label for="name" class="fw-bold">Name</label>
+                        <input type="text" class="form-control form-control-md rounded-0 border" name="name"
+                            maxlength="50" value="<%= typeof name!= 'undefined' ? name : user.name %>">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="about" class="fw-bold">About Me</label>
+                        <textarea name="about" class="form-control form-control-md rounded-0" rows="3"
+                            maxlength="150"><%= typeof about!= 'undefined' ? about : user.about %></textarea>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="address" class="fw-bold">Address</label>
+                        <input type="text" class="form-control form-control-md rounded-0 border" name="address"
+                            minlength="10" maxlength="50"
+                            value="<%= typeof address!= 'undefined' ? address : user.address %>">
+                    </div>
+                    <hr class="mb-4">
+                    <div class="form-group mb-4">
+                        <label for="email" class="fw-bold">Email</label>
+                        <input type="email" class="form-control form-control-md rounded-0" name="email"
+                            value="<%= typeof email!= 'undefined' ? email : user.email %>" disabled>
+                        <% if(typeof error !='undefined' ){ %>
+                            <% if(typeof error.email !='undefined' ){ %>
+                                <small class="text-danger">
+                                    <%= error.email %>
+                                </small>
+                                <% } %>
+                                    <% } %>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="mobile" class="fw-bold">Mobile</label>
+                        <input type="number" class="form-control form-control-md rounded-0" name="mobile"
+                            value="<%= typeof mobile!= 'undefined' ? mobile : user.mobile %>">
+                        <% if(typeof error !='undefined' ){ %>
+                            <% if(typeof error.mobile !='undefined' ){ %>
+                                <small class="text-danger">
+                                    <%= error.mobile %>
+                                </small>
+                                <% } %>
+                                    <% } %>
+                    </div>
+                    <hr class="mb-4">
+
+                    <div class="form-group mb-4 d-flex justify-content-between">
+                        <a href="/profile" class="text-dark">Discard</a>
+                        <button type="submit" class="btn btn-dark px-5">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <%- include('includes/foot') %>

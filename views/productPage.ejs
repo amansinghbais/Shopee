@@ -1,0 +1,63 @@
+<%- include('includes/head') %>
+    <%- include('includes/nav') %>
+        <div class="container-fluid" style="background-color: rgb(235, 221, 221);min-height: 100vh;padding-top: 50px;">
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-8 me-3 p-0 border border-2 bg-light">
+                        <div class="w-100 d-flex justify-content-center align-items-center bg-dark mb-2"
+                            style="height: 450px;">
+                            <img src="<%= product.imgUrl %>" class="border border-light" style="height: 400px;">
+                        </div>
+                        <div class="container-fluid">
+                            <h5 class="fw-bold">Description</h5>
+                            <p class="">
+                                <%= product.description %>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col p-0">
+                        <div class="container-fluid border border-2 bg-light py-2 px-3 mb-2">
+                            <h3 class="fw-bold">₹ <%= product.price %>
+                            </h3>
+                            <h1 class="fw-normal fs-5 text-wrap mb-4" style="color: rgb(100, 100, 100);">
+                                <%= product.title %>
+                            </h1>
+                            <p class="text-muted text-end m-0" style="font-size: 12px;">
+                                <%= product.city.toUpperCase() %>
+                            </p>
+                        </div>
+                        <div class="container-fluid border border-2 bg-light px-3 py-2">
+
+                            <h5>Seller Description</h6>
+                                <div class="container-fluid d-flex align-items-center my-3">
+                                    <div class="border-0 text-white d-flex justify-content-center align-items-center fs-2 me-2"
+                                        style="width: 70px;height: 70px;background-color: rgb(75, 75, 116);border-radius: 50%;">
+                                        <%= seller.name.split("")[0] %>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1"><%= seller.name %></h5>
+                                        <p style="font-size: 13px;" class="m-0"><%= seller.about %></p>
+                                    </div>
+                                </div>
+                                <% if(user.email !=seller.email){ %>
+                                    <% if(requested == false){ %>
+                                        <form action="/product/request/?uid=<%= user.uid %>&sid=<%= seller.uid%>&aid=<%= product.aid %>" method="post">
+                                            <textarea name="reason" class="w-100 rounded-0 p-2" rows="7"
+                                                placeholder="Purpose for request" style="resize: none;"></textarea>
+                                            <button type="submit"
+                                                class="btn btn-lg btn-outline-dark w-100 mb-1 rounded-0">Request</button>
+                                            </form>
+                                            <% }else{ %>
+                                                <div class="btn btn-lg btn-dark w-100 mb-1 rounded-0">Already Requested!</div>
+
+                                    <% } %>
+
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%- include('includes/foot') %>

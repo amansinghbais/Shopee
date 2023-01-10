@@ -1,0 +1,70 @@
+<%- include('includes/head') %>
+    <%- include('includes/nav') %>
+
+        <div class="row justify-content-start vw-100" style="margin-top: 70px;">
+            <div class="profile-image col-3 my-5 mx-3 d-flex justify-content-start align-items-center flex-column">
+                <div class="d-flex justify-content-center align-items-center text-white"
+                    style="background-color: rgb(75, 75, 116);border-radius: 50%;font-size: 50px;width: 200px;height: 200px;">
+                    <%= user.name.split("")[0].toUpperCase() %>
+                </div>
+                <a href="/profile/edit" class="btn btn-outline-dark mt-2 px-5">Edit Profile</a>
+            </div>
+            <div class="col-7 mx-3 p-0 my-5" style="border: 1px solid rgb(194, 183, 183);">
+                <h4 class="p-4" style="border: 1px solid rgb(194, 183, 183);">
+                    Your Profile
+                </h4>
+                <div class="p-4">
+                    <div class="col">
+                        <div class=" mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Full Name</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0"><%= user.name %></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Email</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0"><%= user.email %></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Mobile</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0"><%= user.mobile %></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Address</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0"><%= user.address %></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">About Me</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0"><%= user.about %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%- include('includes/foot') %>
